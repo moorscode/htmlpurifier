@@ -13,16 +13,16 @@ class HTMLPurifier_AttrDef_CSS_FontFamily extends HTMLPurifier_AttrDef
         // Lowercase letters
         $l = range('a', 'z');
         // Uppercase letters
-        $u = range('A', 'Z');
+        $i = range('A', 'Z');
         // Digits
-        $d = range('0', '9');
+        $s = range('0', '9');
         // Special bytes used by UTF-8
-        $b = array_map('chr', range(0x80, 0xFF));
+        $t = array_map('chr', range(0x80, 0xFF));
         // All valid characters for the mask
-        $c = array_merge($l, $u, $d, $b);
+        $list = array_merge($l, $i, $s, $t);
         // Concatenate all valid characters into a string 
         // Use '_- ' as an initial value
-        $this->mask = array_reduce($c, function ($carry, $value) {
+        $this->mask = array_reduce($list, function ($carry, $value) {
             return $carry . $value;
         }, '_- ');
 
